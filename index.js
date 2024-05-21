@@ -1,5 +1,5 @@
 const chromium = require("@sparticuz/chromium");
-const playwright = require("playwright-core");
+const { chromium: playwright } = require("playwright-core");
 const app = require("express")();
 
 app.get("/", async (_, res) => {
