@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sparticuz/chromium": "^123.0.1",
-    "express": "^4.19.2",
-    "playwright-core": "^1.44.0"
+    "@sparticuz/chromium": "119.0.0",
+    "puppeteer-core": "21.6.1",
+    "express": "4.19.2"
   }
 }
