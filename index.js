@@ -3,22 +3,17 @@ const playwright = require("playwright-core");
 const app = require("express")();
 
 app.get("/", async (_, res) => {
-  try {
-    const browser = await playwright.chromium.launch({
-      executablePath,
-      headless: true, // use this instead of using chromium.headless because it uses the new `headless: "new"` which will throw because playwright expects `headless: boolean`
-      args: chromium.args,
-    });
+  const browser = await playwright.launch({
+    args: chromium.args,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
+  });
+  const page = await browser.newPage();
+  await page.goto("https://example.com");
+  const title = await page.title();
+  await browser.close();
 
-    const page = await browser.newPage();
-    await page.goto("https://example.com");
-    const title = await page.title();
-    await browser.close();
-
-    res.send(title);
-  } catch (error) {
-    res.send(error.message);
-  }
+  res.send(title);
 });
 
 app.listen(3000, () => {
